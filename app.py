@@ -1,6 +1,63 @@
 import os
 import re
 import streamlit as st
+import streamlit as st
+
+# ضبط إعدادات الصفحة
+st.set_page_config(page_title="منصة بَيِّنَة الذكية", page_icon="⚖️", layout="wide")
+
+# تطبيق التنسيقات العصرية CSS
+st.markdown("""
+    <style>
+    /* استيراد خط تجريدي عصري من Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+    
+    html, body, [class*="css"] {
+        font-family: 'Tajawal', sans-serif;
+    }
+    
+    /* خلفية هادئة للمنصة */
+    .stApp {
+        background-color: #f8fafc;
+    }
+    
+    /* تصميم الهيدر الرئيسي بألوان متدرجة عصري */
+    .main-header {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.25);
+        margin-bottom: 2rem;
+    }
+    
+    /* تصميم بطاقات النتائج والمراجع */
+    .card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        border-right: 5px solid #3b82f6;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1rem;
+    }
+    
+    /* تحسين شكل زر البحث */
+    .stButton>button {
+        background: linear-gradient(90deg, #2563eb, #1d4ed8);
+        color: white;
+        border-radius: 8px;
+        font-weight: bold;
+        padding: 0.6rem 2rem;
+        border: none;
+        transition: all 0.3s ease;
+    }
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 # 1. إعداد الصفحة وتفعيل التصميم التجاوبي
 st.set_page_config(
