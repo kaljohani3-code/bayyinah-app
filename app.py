@@ -79,7 +79,7 @@ st.markdown("""
 
 # 3. القائمة الجانبية (Sidebar)
 with st.sidebar:
-    st.image("https://img.icons8.com/isometric/512/scale.png", width=100)
+   
     st.title("عن المنصة")
     st.info("""
     ** منصة بَيِّنَة الذكية**
