@@ -1,11 +1,75 @@
 import os
 import re
 import streamlit as st
-import streamlit as st
 
 # ضبط إعدادات الصفحة
 st.set_page_config(page_title="منصة بَيِّنَة الذكية", page_icon="⚖️", layout="wide")
+# 2. تحسين تصميم الواجهة والخطوط (CSS Morden UI)
+st.markdown("""
+<style>
+    /* استدعاء خط Cairo الحديث من Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
 
+    /* تطبيق الخط على كافة عناصر التطبيق */
+    html, body, [class*="css"], font, span, div, p, h1, h2, h3, input, button {
+        font-family: 'Cairo', sans-serif !important;
+    }
+
+    /* تحسين الهيدر الرئيسي (Hero Banner) */
+    .title-header {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        padding: 2.5rem 1.5rem;
+        border-radius: 16px;
+        color: white;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        margin-bottom: 2rem;
+    }
+
+    .title-header h1 {
+        font-weight: 800;
+        font-size: 2.2rem;
+        color: #ffffff;
+        margin-bottom: 0.5rem;
+    }
+
+    .title-header p {
+        font-weight: 600;
+        color: #e0e6ed;
+        font-size: 1.1rem;
+    }
+
+    /* تحسين القائمة الجانبية Sidebar */
+    [data-testid="stSidebar"] {
+        background-color: #f8fafc;
+        border-left: 1px solid #e2e8f0;
+    }
+
+    /* تحسين حقل المدخلات (مربع البحث) */
+    .stTextInput input {
+        border-radius: 12px !important;
+        border: 2px solid #cbd5e1 !important;
+        padding: 12px 16px !important;
+        font-size: 1rem !important;
+        transition: all 0.3s ease;
+    }
+
+    .stTextInput input:focus {
+        border-color: #2c5364 !important;
+        box-shadow: 0 0 10px rgba(44, 83, 100, 0.2) !important;
+    }
+
+    /* تحسين صندوق النتيجة المباشرة */
+    .stSuccess {
+        border-radius: 12px !important;
+        padding: 1.2rem !important;
+        font-size: 1.1rem !important;
+        line-height: 1.8 !important;
+        border-right: 6px solid #10b981 !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+    }
+</style>
+""", unsafe_allow_html=True)
 # تطبيق التنسيقات العصرية CSS
 st.markdown("""
     <style>
