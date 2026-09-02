@@ -133,20 +133,18 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
-
 # 3. القائمة الجانبية (Sidebar)
-  with st.sidebar:
-        st.title("(عن المنصة)")
-        st.info("""
+with st.sidebar:
+    st.title("(عن المنصة)")
+    st.info("""
 **منصة بَيِّنَة الذكية**
 
 ﴿فَاسْأَلُوا أَهْلَ الذِّكْرِ إِن كُنتُمْ لَا تَعْلَمُونَ﴾
 
 منظومة استدلال فقهي تعتمد النص المباشر والمشروط من المراجع المعتمدة، لضمان أعلى درجات الموثوقية والحد من الاجتهاد الخارجي.
 """)
-        st.divider()
-        st.markdown("<b>المرجع النشط:</b> كتاب فقه العبادات", unsafe_allow_html=True)
-# 4. واجهة الصفحة الرئيسية
+    st.divider()
+    st.markdown("<b>المرجع النشط:</b> كتاب فقه العبادات", unsafe_allow_html=True)
 st.markdown("""
     <div class="title-header">
         <h1> منصة بَيِّنَة الذكية</h1>
