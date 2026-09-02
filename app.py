@@ -212,8 +212,10 @@ if user_query:
                 matched_words_count = sum(1 for w in search_words if w in cleaned_text)
                 
                 # إعطاء أولوية أعلى إذا كانت كلمات البحث توجد في السطر الأول (عنوان المسألة)
-                first_line = cleaned_text.split('\n')[0] if '\n' in cleaned_text else cleaned_text
-                title_bonus = sum(3 for w in search_words if w in first_line)
+               # إعطاء أولوية أعلى إذا كانت كلمات البحث توجد في السطر الأول (عنوان المسألة)
+            lines = cleaned_text.split('\n')
+            first_line = lines[0] if lines else cleaned_text
+            title_bonus = sum(5 for w in search_words if w in first_line)
                 
                 total_score = matched_words_count + title_bonus
                 
