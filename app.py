@@ -200,37 +200,32 @@ st.markdown("### 🔍 بحث في المرجع الفقهي المعتمد")
 user_query = st.text_input("", placeholder="اكتب سؤالك هنا (مثال: ما هي أركان الوضوء، حكم الصلاة...)")
 
 if user_query:
-        with st.spinner("جاري استرجاع الحكم والاستدلال المباشر..."):
-            cleaned_query = clean_arabic(user_query)
-            search_words = [w.strip() for w in cleaned_query.split() if len(w.strip()) > 1]
+    with st.spinner("جاري استرجاع الحكم والاستدلال المباشر..."):
+        cleaned_query = clean_arabic(user_query)
+        search_words = [w.strip() for w in cleaned_query.split() if len(w.strip()) > 1]
+        
+        matches = []
+        for p in pages_data:
+            cleaned_text = p["cleaned_text"]
             
-            matches = []
-            for p in pages_data:
-                cleaned_text = p["cleaned_text"]
-                
-                # حساب مدى مطابقة الكلمات المبحوث عنها
-                matched_words_count = sum(1 for w in search_words if w in cleaned_text)
-                
-                # إعطاء أولوية أعلى إذا كانت كلمات البحث توجد في السطر الأول (عنوان المسألة)
-               # إعطاء أولوية أعلى إذا كانت كلمات البحث توجد في السطر الأول (عنوان المسألة)
+            matched_words_count = sum(1 for w in search_words if w in cleaned_text)
+            
             lines = cleaned_text.split('\n')
             first_line = lines[0] if lines else cleaned_text
             title_bonus = sum(5 for w in search_words if w in first_line)
-                
-                total_score = matched_words_count + title_bonus
-                
-                # اشترط وجود أكثر من كلمة أو إحراز طابق قوي لتجنب النتائج الخاطئة
-                if matched_words_count >= 1:
-                    matches.append((total_score, p))
             
-            # ترتيب النتائج بالأعلى أولوية
-            matches.sort(key=lambda x: x[0], reverse=True)
+            total_score = matched_words_count + title_bonus
             
-            if matches:
-                top_match = matches[0][1]
-                
-                st.markdown("### 💡 الحكم والاستدلال المباشر:")
-                st.success(top_match["raw_text"])
-                st.caption(f"📌 {top_match['page']}")
-            else:
-                st.warning("لم يتم العثور على نص مرتبط بهذا البحث في المرجع المعتمد.")
+            if matched_words_count >= 1:
+                matches.append((total_score, p))
+        
+        matches.sort(key=lambda x: x[0], reverse=True)
+        
+        if matches:
+            top_match = matches[0][1]
+            
+            st.markdown("### 💡 الحكم والاستدلال المباشر:")
+            st.success(top_match["raw_text"])
+            st.caption(f"📌 {top_match['page']}")
+        else:
+            st.warning("لم يتم العثور على نص مرتبط بهذا البحث في المرجع المعتمد.")
