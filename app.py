@@ -136,6 +136,7 @@ st.markdown("""
   # 3. القائمة الجانبية (Sidebar)
 # 3. القائمة الجانبية (Sidebar)
 # 3. القائمة الجانبية (Sidebar)
+# 3. القائمة الجانبية (Sidebar)
 with st.sidebar:
     st.title("💡 عن المنصة")
     
@@ -146,12 +147,22 @@ with st.sidebar:
             <span style="background-color: #fef3c7; color: #d97706; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; border: 1px solid #fde68a;">نسخة تجريبية</span>
         </div>
         <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.8rem;">
-            منظومة استدلال فقهي تعتمد النص المباشر والمشروط من المراجع المعتمدة لضمان أعلى درجات الموثوقية والحد من الاجتهاد الخارجي
+            منظومة استدلال فقهي تعتمد النص المباشر والمشروط من المراجع المعتمدة لضمان أعلى درجات الموثوقية والحد من الاجتهاد الخارجي.
         </p>
         <p style="color: #0f172a; font-size: 0.9rem; font-weight: 700; text-align: center; background: #e2e8f0; padding: 6px; border-radius: 8px; margin: 0;">
             "فَاسْأَلُوا أَهْلَ الذِّكْرِ إِن كُنتُمْ لَا تَعْلَمُونَ"
         </p>
     </div>
+    
+    <div style="background-color: #ffffff; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+        <p style="margin: 0; font-size: 0.85rem; color: #64748b;">تطوير وبرمجة:</p>
+        <p style="margin: 4px 0 0 0; font-size: 1rem; font-weight: 700; color: #0f172a;">م. خالد علي الجهني</p>
+    </div>
+    """
+    st.markdown(sidebar_html, unsafe_allow_html=True)
+    
+    st.divider()
+    st.markdown("<b>📖 المرجع النشط:</b> كتاب فقه العبادات", unsafe_allow_html=True)
     
     <div style="background-color: #ffffff; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
         <p style="margin: 0; font-size: 0.85rem; color: #64748b;">تطوير وبرمجة:</p>
