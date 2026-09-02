@@ -200,33 +200,35 @@ st.markdown("### 🔍 بحث في المرجع الفقهي المعتمد")
 user_query = st.text_input("", placeholder="اكتب سؤالك هنا (مثال: ما هي أركان الوضوء، حكم الصلاة...)")
 
 if user_query:
-    with st.spinner("جاري استخراج الأدلة والنصوص المباشرة..."):
-        cleaned_query = clean_arabic(user_query)
-        search_words = [w.strip() for w in cleaned_query.split() if len(w.strip()) > 1]
-        
-        matches = []
-        for p in pages_data:
-            score = 0
-            for w in search_words:
-                if w in p["cleaned_text"]:
-                    score += p["cleaned_text"].count(w) * 3
+        with st.spinner("جاري استرجاع الحكم والاستدلال المباشر..."):
+            cleaned_query = clean_arabic(user_query)
+            search_words = [w.strip() for w in cleaned_query.split() if len(w.strip()) > 1]
             
-            if score > 0:
-                matches.append((score, p))
+            matches = []
+            for p in pages_data:
+                cleaned_text = p["cleaned_text"]
                 
-        matches.sort(key=lambda x: x[0], reverse=True)
-        relevant_pages = [m[1] for m in matches[:3]]
-        
-        st.markdown("<br><h4>📋 النصوص والاستدلالات المباشرة:</h4>", unsafe_allow_html=True)
-        
-        if not relevant_pages:
-            st.warning("⚠️ (لا توجد معلومة موثوقة في المراجع المعتمدة لهذه المسألة)")
-        else:
-            for i, p in enumerate(relevant_pages, 1):
-                # عرض النتائج في بطاقات أنيقة
-                st.markdown(f"""
-                    <div class="result-card">
-                        <div class="result-meta">المصدر: كتاب فقه العبادات | صفحة {p['page']}</div>
-                        <div class="result-body">{p['raw_text']}</div>
-                    </div>
-                """, unsafe_allow_html=True)
+                # حساب مدى مطابقة الكلمات المبحوث عنها
+                matched_words_count = sum(1 for w in search_words if w in cleaned_text)
+                
+                # إعطاء أولوية أعلى إذا كانت كلمات البحث توجد في السطر الأول (عنوان المسألة)
+                first_line = cleaned_text.split('\n')[0] if '\n' in cleaned_text else cleaned_text
+                title_bonus = sum(3 for w in search_words if w in first_line)
+                
+                total_score = matched_words_count + title_bonus
+                
+                # اشترط وجود أكثر من كلمة أو إحراز طابق قوي لتجنب النتائج الخاطئة
+                if matched_words_count >= 1:
+                    matches.append((total_score, p))
+            
+            # ترتيب النتائج بالأعلى أولوية
+            matches.sort(key=lambda x: x[0], reverse=True)
+            
+            if matches:
+                top_match = matches[0][1]
+                
+                st.markdown("### 💡 الحكم والاستدلال المباشر:")
+                st.success(top_match["raw_text"])
+                st.caption(f"📌 {top_match['page']}")
+            else:
+                st.warning("لم يتم العثور على نص مرتبط بهذا البحث في المرجع المعتمد.")
