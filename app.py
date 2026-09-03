@@ -85,7 +85,7 @@ with st.sidebar:
 # 4. الهيدر الرئيسي
 header_html = """
 <div class="main-header">
-    <h1 style="margin:0; font-size: 2.2rem; font-weight: 800;">منصة بَيِّنَة للترجيح والاستدلال الفقهي</h1>
+    <h1 style="margin:0; font-size: 2.2rem; font-weight: 800;">منصة بَيِّنَة للبحث والاستدلال الفقهي</h1>
     <p style="margin-top: 10px; font-size: 1.1rem; opacity: 0.9;">مساعدك الذكي لإستخراج الأحكام الشرعية المدعومة بالنصوص المباشرة</p>
 </div>
 """
