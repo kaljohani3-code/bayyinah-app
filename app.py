@@ -5,7 +5,7 @@ import streamlit as st
 # ضبط إعدادات الصفحة
 st.set_page_config(page_title="منصة بَيِّنَة الذكية", page_icon="⚖️", layout="wide")
 # 2. تحسين تصميم الواجهة والخطوط (CSS Morden UI)
-st.markdown("""
+   st.markdown("""
 <style>
     /* استدعاء خط Cairo الحديث من Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
@@ -160,7 +160,7 @@ with st.sidebar:
     </div>
     """
     st.markdown(sidebar_html, unsafe_allow_html=True)
-    
+ 
     st.divider()
     st.markdown("<b>📖 المرجع النشط:</b> كتاب فقه العبادات", unsafe_allow_html=True)
     
