@@ -8,14 +8,18 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# 2. تنسيق أنيق ومجرب بدون كسر القائمة الجانبية
+# 2. تنسيق أنيق مع إخفاء أخطاء نصوص الأيقونات العلوية
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
 
-    /* تطبيق الخط والعربية فقط على النصوص الأساسية */
     body, p, h1, h2, h3, h4, h5, h6, div, span, input {
         font-family: 'Tajawal', sans-serif !important;
+    }
+
+    /* إخفاء النص المشوه في الشريط العلوي */
+    [data-testid="stSidebarCollapseButton"] span {
+        display: none !important;
     }
 
     .main-card {
@@ -42,7 +46,6 @@ st.markdown("""
         margin: 0 !important;
     }
 
-    /* ضبط اتجاه حقل المدخلات */
     .stTextInput label, .stTextInput input {
         direction: rtl !important;
         text-align: right !important;
@@ -66,7 +69,7 @@ with st.sidebar:
     st.divider()
     st.markdown("📖 **المرجع النشط:** كتاب فقه العبادات")
 
-# 4. الواجهة الرئيسية (الكارت الأزرق)
+# 4. الواجهة الرئيسية
 st.markdown("""
 <div class="main-card">
     <h1>منصة بَيِّنَة للبحث والاستدلال الفقهي</h1>
