@@ -5,33 +5,33 @@ st.set_page_config(
     page_title="منصة بَيِّنَة الذكية",
     page_icon="📜",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
-# 2. تطبيق الخط والتنسيقات الآمنة للشاشات
+# 2. تنسيق أنيق ومجرب بدون كسر القائمة الجانبية
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
 
-    html, body, [class*="css"], font, span, div, p, h1, h2, h3, input, button {
+    /* تطبيق الخط والعربية فقط على النصوص الأساسية */
+    body, p, h1, h2, h3, h4, h5, h6, div, span, input {
         font-family: 'Tajawal', sans-serif !important;
-        direction: rtl;
-        text-align: right;
     }
 
     .main-card {
         background: linear-gradient(135deg, #1e3a8a, #0f172a);
-        padding: 2rem 1.2rem;
+        padding: 2rem 1rem;
         border-radius: 16px;
         color: white;
         text-align: center;
+        direction: rtl;
         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         margin-bottom: 1.5rem;
     }
 
     .main-card h1 {
         color: #ffffff !important;
-        font-size: 1.7rem !important;
+        font-size: 1.6rem !important;
         font-weight: 800 !important;
         margin-bottom: 0.5rem !important;
     }
@@ -41,21 +41,25 @@ st.markdown("""
         font-size: 0.95rem !important;
         margin: 0 !important;
     }
+
+    /* ضبط اتجاه حقل المدخلات */
+    .stTextInput label, .stTextInput input {
+        direction: rtl !important;
+        text-align: right !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
 # 3. القائمة الجانبية (Sidebar)
 with st.sidebar:
     st.title("💡 عن المنصة")
-    
     st.info("""
     **منصة بَيِّنَة الذكية** (نسخة تجريبية)
     
-    منظومة استدلال فقهي تعتمد النص المباشر والمشروط من المراجع المعتمدة لضمان أعلى درجات الموثوقية والحد من الاخطاء.
+    منظومة استدلال فقهي تعتمد النص المباشر والمشروط من المراجع المعتمدة لضمان أعلى درجات الموثوقية.
     
     > *"فَاسْأَلُوا أَهْلَ الذِّكْرِ إِن كُنتُمْ لَا تَعْلَمُونَ"*
     """)
-    
     st.markdown("---")
     st.caption("تطوير وبرمجة:")
     st.markdown("**م. خالد علي الجهني**")
