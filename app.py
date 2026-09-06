@@ -3,7 +3,7 @@ import streamlit as st
 
 # 1. إعدادات الصفحة
 st.set_page_config(
-    page_title="منصة بَيِّنَة الذكية",
+    page_title=" منصة بَيِّنَة الذكية علي شاطر",
     page_icon="📜",
     layout="wide",
     initial_sidebar_state="expanded"
