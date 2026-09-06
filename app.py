@@ -64,14 +64,26 @@ st.markdown("""
         color: #1e293b !important;
     }
 
+    .result-title {
+        direction: rtl;
+        text-align: right;
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #1e3a8a;
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
     .result-box {
         background-color: #f8fafc;
         border-right: 5px solid #1e3a8a;
-        padding: 1.2rem;
-        border-radius: 8px;
-        margin-top: 1rem;
+        padding: 1.5rem;
+        border-radius: 12px;
         direction: rtl;
         text-align: right;
+        line-height: 1.8;
+        font-size: 1.05rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -85,7 +97,6 @@ def search_reference(query):
     with open(filename, "r", encoding="utf-8") as file:
         content = file.read()
     
-    # تقسيم المرجع إلى فقرات للبحث عن الكلمات المفتاحية
     paragraphs = [p.strip() for p in content.split("\n\n") if p.strip()]
     matched = []
     
@@ -130,7 +141,7 @@ user_query = st.text_input("أدخل مسألتك الفقهية هنا:", place
 if user_query:
     results, error = search_reference(user_query)
     if results:
-        st.subheader("📌 النص الفقهي والاستدلال المباشر:")
+        st.markdown('<div class="result-title">📌 النص الفقهي والاستدلال المباشر:</div>', unsafe_allow_html=True)
         st.markdown(f'<div class="result-box">{results}</div>', unsafe_allow_html=True)
     else:
         st.warning(error)
