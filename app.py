@@ -3,7 +3,7 @@ import streamlit as st
 
 # 1. إعدادات الصفحة
 st.set_page_config(
-    page_title=" منصة بَيِّنَة الذكية علي شاطر",
+    page_title=" منصة بَيِّنَة الذكية",
     page_icon="📜",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -115,7 +115,7 @@ def search_reference(query):
 with st.sidebar:
     st.title("💡 عن المنصة")
     st.info("""
-    **منصة بَيِّنَة الذكية** (نسخة تجريبية)
+    **منصة بَيِّنَة الذكية علي شاطر** (نسخة تجريبية)
     
     منظومة استدلال فقهي تعتمد النص المباشر والمشروط من المراجع المعتمدة لضمان أعلى درجات الموثوقية.
     
