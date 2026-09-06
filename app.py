@@ -5,10 +5,10 @@ st.set_page_config(
     page_title="منصة بَيِّنَة الذكية",
     page_icon="📜",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"
 )
 
-# 2. تنسيق أنيق مع إخفاء أخطاء نصوص الأيقونات العلوية
+# 2. التنسيقات النهائية الاحترافية
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
@@ -17,38 +17,58 @@ st.markdown("""
         font-family: 'Tajawal', sans-serif !important;
     }
 
-    /* إخفاء النص المشوه في الشريط العلوي */
-    [data-testid="stSidebarCollapseButton"] span {
+    /* إخفاء نصوص الأيقونات والأدوات الافتراضية */
+    [data-testid="stSidebarCollapseButton"] span,
+    .stInstructions {
         display: none !important;
     }
 
+    /* تصميم البطاقة الرئيسية */
     .main-card {
         background: linear-gradient(135deg, #1e3a8a, #0f172a);
-        padding: 2rem 1rem;
+        padding: 2.5rem 1.5rem;
         border-radius: 16px;
         color: white;
         text-align: center;
         direction: rtl;
         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
 
     .main-card h1 {
         color: #ffffff !important;
-        font-size: 1.6rem !important;
+        font-size: 2rem !important;
         font-weight: 800 !important;
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.6rem !important;
     }
 
     .main-card p {
         color: #cbd5e1 !important;
-        font-size: 0.95rem !important;
+        font-size: 1.05rem !important;
         margin: 0 !important;
     }
 
-    .stTextInput label, .stTextInput input {
+    /* تحسين تصميم حقل الإدخال */
+    .stTextInput > div > div > input {
         direction: rtl !important;
         text-align: right !important;
+        border-radius: 12px !important;
+        padding: 12px 16px !important;
+        font-size: 1.05rem !important;
+        border: 2px solid #cbd5e1 !important;
+    }
+
+    .stTextInput > div > div > input:focus {
+        border-color: #1e3a8a !important;
+        box-shadow: 0 0 0 1px #1e3a8a !important;
+    }
+
+    .stTextInput label {
+        direction: rtl !important;
+        text-align: right !important;
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+        color: #1e293b !important;
     }
 </style>
 """, unsafe_allow_html=True)
