@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 
 # 1. إعدادات الصفحة
@@ -8,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 2. التنسيقات النهائية الاحترافية
+# 2. التنسيقات والخطوط
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
@@ -17,13 +18,11 @@ st.markdown("""
         font-family: 'Tajawal', sans-serif !important;
     }
 
-    /* إخفاء نصوص الأيقونات والأدوات الافتراضية */
     [data-testid="stSidebarCollapseButton"] span,
     .stInstructions {
         display: none !important;
     }
 
-    /* تصميم البطاقة الرئيسية */
     .main-card {
         background: linear-gradient(135deg, #1e3a8a, #0f172a);
         padding: 2.5rem 1.5rem;
@@ -48,7 +47,6 @@ st.markdown("""
         margin: 0 !important;
     }
 
-    /* تحسين تصميم حقل الإدخال */
     .stTextInput > div > div > input {
         direction: rtl !important;
         text-align: right !important;
@@ -58,11 +56,6 @@ st.markdown("""
         border: 2px solid #cbd5e1 !important;
     }
 
-    .stTextInput > div > div > input:focus {
-        border-color: #1e3a8a !important;
-        box-shadow: 0 0 0 1px #1e3a8a !important;
-    }
-
     .stTextInput label {
         direction: rtl !important;
         text-align: right !important;
@@ -70,10 +63,44 @@ st.markdown("""
         font-weight: 700 !important;
         color: #1e293b !important;
     }
+
+    .result-box {
+        background-color: #f8fafc;
+        border-right: 5px solid #1e3a8a;
+        padding: 1.2rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+        direction: rtl;
+        text-align: right;
+    }
 </style>
 """, unsafe_allow_html=True)
 
-# 3. القائمة الجانبية (Sidebar)
+# 3. دالة البحث في كتاب المرجع
+def search_reference(query):
+    filename = "sample_reference.txt"
+    if not os.path.exists(filename):
+        return None, "ملف المرجع (sample_reference.txt) غير موجود في مجلد المشروع."
+    
+    with open(filename, "r", encoding="utf-8") as file:
+        content = file.read()
+    
+    # تقسيم المرجع إلى فقرات للبحث عن الكلمات المفتاحية
+    paragraphs = [p.strip() for p in content.split("\n\n") if p.strip()]
+    matched = []
+    
+    keywords = [k for k in query.split() if len(k) > 2]
+    
+    for p in paragraphs:
+        if any(keyword in p for keyword in keywords):
+            matched.append(p)
+            
+    if matched:
+        return "\n\n---\n\n".join(matched), None
+    else:
+        return None, "لم يتم العثور على نص مباشر مطالع لهذه المسألة في المرجع النشط."
+
+# 4. القائمة الجانبية (Sidebar)
 with st.sidebar:
     st.title("💡 عن المنصة")
     st.info("""
@@ -89,7 +116,7 @@ with st.sidebar:
     st.divider()
     st.markdown("📖 **المرجع النشط:** كتاب فقه العبادات")
 
-# 4. الواجهة الرئيسية
+# 5. الواجهة الرئيسية
 st.markdown("""
 <div class="main-card">
     <h1>منصة بَيِّنَة للبحث والاستدلال الفقهي</h1>
@@ -97,8 +124,13 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 5. منطقة التفاعل والاستعلام
-user_query = st.text_input("أدخل مسألتك الفقهية هنا:", placeholder="مثال: ما حكم صلاة المسافر في الطائرة؟")
+# 6. منطقة التفاعل واستخراج النتائج
+user_query = st.text_input("أدخل مسألتك الفقهية هنا:", placeholder="مثال: ما هي اركان الصلاة؟")
 
 if user_query:
-    st.success(f"جاري البحث والاستدلال عن: **{user_query}**")
+    results, error = search_reference(user_query)
+    if results:
+        st.subheader("📌 النص الفقهي والاستدلال المباشر:")
+        st.markdown(f'<div class="result-box">{results}</div>', unsafe_allow_html=True)
+    else:
+        st.warning(error)
